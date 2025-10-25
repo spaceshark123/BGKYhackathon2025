@@ -1,73 +1,50 @@
-# React + TypeScript + Vite
+# House Search App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern house search application with React, TypeScript, Next.js frontend and Express.js backend.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prerequisites
+- Node.js 18+ installed
 
-## React Compiler
+### Installation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Install dependencies:
+\`\`\`bash
+npm install
+\`\`\`
 
-## Expanding the ESLint configuration
+### Running the Application
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+You have two options:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+**Option 1: Run both servers together (recommended)**
+\`\`\`bash
+npm run dev:all
+\`\`\`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**Option 2: Run servers separately**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Terminal 1 - Express Backend:
+\`\`\`bash
+npm run dev:server
+\`\`\`
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Terminal 2 - Next.js Frontend:
+\`\`\`bash
+npm run dev
+\`\`\`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The Express server will run on `http://localhost:3001` and the Next.js app on `http://localhost:3000`.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Architecture
+
+- **Frontend**: Next.js 16 with React 19 and TypeScript
+- **Backend**: Express.js REST API
+- **Data**: JSON file-based storage with server-side filtering and pagination
+- **Styling**: Tailwind CSS with shadcn/ui components
+
+## API Endpoints
+
+- `GET /api/properties` - Fetch filtered and paginated properties
+  - Query params: `minPrice`, `maxPrice`, `minSquareFeet`, `maxSquareFeet`, `bedrooms`, `bathrooms`, `location`, `page`
