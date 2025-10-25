@@ -52,35 +52,55 @@ app.get("/api/properties", async (req, res) => {
       return true
     })
 
-    // Sort properties
-    const sortedProperties = [...filteredProperties].sort((a, b) => {
-      const safeNumber = (value) => {
-        if (value == null) return 0
-        if (typeof value === "number") return value
-        if (typeof value === "string") {
-          const num = parseFloat(value.replace(/[^0-9.-]+/g, ""))
-          return Number.isFinite(num) ? num : 0
-        }
-        return 0
-      }
+    // check if all properties have the price field as number
+    const allPricesAreNumbers = filteredProperties.every((property) => typeof property.price === "number")
+    console.log("All prices are numbers:", allPricesAreNumbers)
 
-      const getVal = (obj, key) => safeNumber(obj[key])
-      const aVal = getVal(a, sortBy)
-      const bVal = getVal(b, sortBy)
-      return aVal - bVal
+    // check if all properties have the squareFeet or squareFootage field
+    const allSquareFeetAreNumbers = filteredProperties.every((property) => (property.squareFeet !== undefined && typeof property.squareFeet === "number") || (property.squareFootage !== undefined && typeof property.squareFootage === "number") || (property.lotSize !== undefined && typeof property.lotSize === "number"))
+    console.log("All square feet are numbers:", allSquareFeetAreNumbers)
+
+    // for each squareFootage that is not a number, log the property
+    filteredProperties.forEach((property) => {
+      if (property.squareFeet === undefined && property.squareFootage === undefined && property.lotSize === undefined) {
+        console.log("Property without squareFootage field:", property)
+      }
     })
 
-    console.log(sortedProperties)
+    // Sort properties (if sortBy is "squareFeet", the field might be named squareFeet, squareFootage, or lotSize)
+    const sortedProperties = filteredProperties.sort((a, b) => {
+      if (sortBy === "price") {
+        return a.price - b.price
+      }
+      else if (sortBy === "squareFeet") {
+        const aSquareFeet = a.squareFeet !== undefined ? a.squareFeet : (a.squareFootage !== undefined ? a.squareFootage : a.lotSize)
+        const bSquareFeet = b.squareFeet !== undefined ? b.squareFeet : (b.squareFootage !== undefined ? b.squareFootage : b.lotSize)
+        return aSquareFeet - bSquareFeet
+      }
+      return 0
+    })
+
+    // for each sorted property, set field lotSize to squareFeet if squareFeet exists, else to squareFootage if squareFootage exists
+    sortedProperties.forEach((property) => {
+      if (property.squareFeet !== undefined) {
+        property.lotSize = property.squareFeet
+      }
+      else if (property.squareFootage !== undefined) {
+        property.lotSize = property.squareFootage
+      }
+    })
+
+    // console.log(sortedProperties)
 
     // Paginate results
     const totalCount = filteredProperties.length
     const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
     const startIndex = (page - 1) * ITEMS_PER_PAGE
     const endIndex = startIndex + ITEMS_PER_PAGE
-    //const paginatedProperties = filteredProperties.slice(startIndex, endIndex)
+    const paginatedProperties = sortedProperties.slice(startIndex, endIndex)
 
     res.json({
-      properties: filteredProperties,
+      properties: paginatedProperties,
       pagination: {
         page,
         totalPages,
