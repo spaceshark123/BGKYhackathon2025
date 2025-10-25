@@ -1,0 +1,112 @@
+[
+  {
+    "id": "1",
+    "title": "Modern Downtown Loft",
+    "price": 850000,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "squareFeet": 1450,
+    "location": "Downtown",
+    "imageUrl": "/modern-loft-interior.jpg",
+    "features": ["Hardwood Floors", "City Views", "Updated Kitchen"]
+  },
+  {
+    "id": "2",
+    "title": "Suburban Family Home",
+    "price": 625000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "squareFeet": 2800,
+    "location": "Westside",
+    "imageUrl": "/suburban-family-home-exterior.jpg",
+    "features": ["Large Backyard", "Garage", "Near Schools"]
+  },
+  {
+    "id": "3",
+    "title": "Luxury Waterfront Estate",
+    "price": 2400000,
+    "bedrooms": 5,
+    "bathrooms": 4.5,
+    "squareFeet": 4200,
+    "location": "Lakeside",
+    "imageUrl": "/luxury-waterfront-home.png",
+    "features": ["Private Dock", "Pool", "Smart Home"]
+  },
+  {
+    "id": "4",
+    "title": "Cozy Starter Home",
+    "price": 385000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "squareFeet": 1200,
+    "location": "Eastside",
+    "imageUrl": "/cozy-starter-home.jpg",
+    "features": ["Renovated", "Fenced Yard", "Quiet Street"]
+  },
+  {
+    "id": "5",
+    "title": "Contemporary Townhouse",
+    "price": 725000,
+    "bedrooms": 3,
+    "bathrooms": 2.5,
+    "squareFeet": 1850,
+    "location": "Midtown",
+    "imageUrl": "/contemporary-townhouse.jpg",
+    "features": ["Rooftop Deck", "Attached Garage", "HOA"]
+  },
+  {
+    "id": "6",
+    "title": "Historic Victorian",
+    "price": 950000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "squareFeet": 3100,
+    "location": "Historic District",
+    "imageUrl": "/victorian-house-exterior.jpg",
+    "features": ["Original Details", "Large Lot", "Updated Systems"]
+  },
+  {
+    "id": "7",
+    "title": "Beachfront Bungalow",
+    "price": 1200000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "squareFeet": 1600,
+    "location": "Beachside",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "features": ["Ocean Views", "Private Beach Access", "Outdoor Shower"]
+  },
+  {
+    "id": "8",
+    "title": "Mountain Retreat",
+    "price": 775000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "squareFeet": 2400,
+    "location": "Mountain View",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "features": ["Fireplace", "Deck", "Hiking Trails"]
+  },
+  {
+    "id": "9",
+    "title": "Urban Studio",
+    "price": 425000,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "squareFeet": 650,
+    "location": "Downtown",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "features": ["High Ceilings", "Exposed Brick", "Walk Score 95"]
+  },
+  {
+    "id": "10",
+    "title": "Ranch Style Home",
+    "price": 550000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "squareFeet": 1900,
+    "location": "Countryside",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "features": ["Open Floor Plan", "Large Lot", "Covered Patio"]
+  }
+]
