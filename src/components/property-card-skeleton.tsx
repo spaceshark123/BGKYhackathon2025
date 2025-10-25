@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card"
 
 export function PropertyCardSkeleton() {
   return (
-    <Card className="overflow-hidden aspect-4/3">
+    <Card className="overflow-hidden">
       {/* Image skeleton */}
       <div className="w-full animate-pulse bg-muted" />
 

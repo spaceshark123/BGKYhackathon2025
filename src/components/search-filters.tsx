@@ -17,12 +17,15 @@ export function SearchFilters({ filters, onFiltersChange }: SearchFiltersProps) 
   const [localPriceRange, setLocalPriceRange] = useState([filters.minPrice, filters.maxPrice])
   const [localSquareFeet, setLocalSquareFeet] = useState([filters.minSquareFeet, filters.maxSquareFeet])
   const [localAddress, setLocalAddress] = useState(filters.formattedAddress || "")
+  // sort by
+  const [sortBy, setSortBy] = useState<"price" | "squareFeet">("price")
 
   useEffect(() => {
     setLocalPriceRange([filters.minPrice, filters.maxPrice])
     setLocalSquareFeet([filters.minSquareFeet, filters.maxSquareFeet])
     setLocalAddress(filters.formattedAddress || "")
-  }, [filters.minPrice, filters.maxPrice, filters.minSquareFeet, filters.maxSquareFeet, filters.formattedAddress])
+    setSortBy(filters.sortBy)
+  }, [filters.minPrice, filters.maxPrice, filters.minSquareFeet, filters.maxSquareFeet, filters.formattedAddress, filters.sortBy])
 
   const updateFilter = (key: keyof SearchFiltersType, value: any) => {
     onFiltersChange({ ...filters, [key]: value })
@@ -43,6 +46,27 @@ export function SearchFilters({ filters, onFiltersChange }: SearchFiltersProps) 
             value={filters.formattedAddress || ""}
             onChange={(e) => updateFilter("formattedAddress", e.target.value)}
           />
+        </div>
+
+        { /* Sort By */}
+        <div className="space-y-2">
+          <Label htmlFor="sort-by">Sort By</Label>
+          <Select
+            value={sortBy}
+            onValueChange={(value) => {
+              const sortValue = value as "price" | "squareFeet"
+              setSortBy(sortValue)
+              updateFilter("sortBy", sortValue)
+            }}
+          >
+            <SelectTrigger id="sort-by" className="w-full">
+              <SelectValue placeholder="Select an option" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="price">Price</SelectItem>
+              <SelectItem value="squareFeet">Square Feet</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Price Range */}

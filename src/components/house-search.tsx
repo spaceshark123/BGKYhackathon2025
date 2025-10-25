@@ -26,6 +26,7 @@ export function HouseSearch() {
     minSquareFeet: 0,
     maxSquareFeet: 5000,
     formattedAddress: "",
+    sortBy: "price",
   })
 
   const [properties, setProperties] = useState<Property[]>([])
@@ -55,6 +56,7 @@ export function HouseSearch() {
           minSquareFeet: filters.minSquareFeet.toString(),
           maxSquareFeet: filters.maxSquareFeet.toString(),
           formattedAddress: filters.formattedAddress || "",
+          // sortBy: filters.sortBy,
           page: "1",
         })
 
@@ -70,7 +72,7 @@ export function HouseSearch() {
       }
     }
 
-    fetchProperties()
+      fetchProperties()
     }, 500)
 
     return () => {
@@ -155,7 +157,7 @@ export function HouseSearch() {
 
                 {pagination.hasMore && (
                   <div className="mt-8 flex justify-center">
-                    <Button onClick={loadMore} disabled={loadingMore} variant="outline" size="lg">
+                    <Button onClick={loadMore} className="transition-shadow hover:shadow-md" disabled={loadingMore} variant="default" size="lg">
                       {loadingMore ? "Loading..." : "Load More Properties"}
                     </Button>
                   </div>

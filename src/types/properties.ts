@@ -14,4 +14,5 @@ export interface SearchFilters {
   minSquareFeet: number
   maxSquareFeet: number
   formattedAddress?: string
+  sortBy: "price" | "squareFeet"
 }

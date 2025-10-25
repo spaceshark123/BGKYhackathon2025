@@ -26,7 +26,9 @@ export function PropertyCard({ property }: PropertyCardProps) {
 
         <div className="mb-3 flex items-center gap-1 text-sm text-muted-foreground">
           <MapPin className="h-4 w-4" />
-          <FadeText text={property.formattedAddress.toLocaleString()} className="max-w-[80px]" />
+          <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(property.formattedAddress)}`} target="_blank" rel="noopener noreferrer">
+            <FadeText text={property.formattedAddress.toLocaleString()} className="max-w-[80px]" />
+          </a>
         </div>
 
         <div className="mb-3 flex items-center gap-4 text-sm text-muted-foreground">
