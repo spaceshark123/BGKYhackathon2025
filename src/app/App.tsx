@@ -1,6 +1,6 @@
 import { HouseSearch } from "../components/house-search"
 import './App.css'
-import './app/globals.css'
+import './globals.css'
 
 function App() {
   return <HouseSearch />
