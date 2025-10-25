@@ -12,11 +12,11 @@ export function PropertyCard({ property }: PropertyCardProps) {
   const getMapImageUrl = (lat: number, lng: number) => {
     const apiKey ='AIzaSyD-lwBv3vwO9vlSLeBoAR4TpkOgIMF0qtY'
     const maptype = 'satellite'
-    return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=16&size=600x400&maptype=${maptype}&markers=color:red%7C${lat},${lng}&key=${apiKey}`
+    return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=20&size=600x400&maptype=${maptype}&markers=color:red%7C${lat},${lng}&key=${apiKey}`
   }
   return (
     <Card className="overflow-hidden transition-shadow hover:shadow-lg">
-      <div className="relative overflow-hidden" style={{ paddingTop: "-75px" }}>
+      <div className="relative overflow-hidden" style={{ marginTop: "-25px" }}>
         <img
           src={getMapImageUrl(property.latitude, property.longitude) || "/house.jpg"}
           alt={property.title}

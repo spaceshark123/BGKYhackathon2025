@@ -53,25 +53,34 @@ app.get("/api/properties", async (req, res) => {
     })
 
     // Sort properties
-    filteredProperties.sort((a, b) => {
-      if (sortBy === "price") {
-        return a.price - b.price
-      } else if (sortBy === "squareFeet") {
-        return a.squareFeet - b.squareFeet
-      } else {
-        return a.price - b.price // Default sort by price
+    const sortedProperties = [...filteredProperties].sort((a, b) => {
+      const safeNumber = (value) => {
+        if (value == null) return 0
+        if (typeof value === "number") return value
+        if (typeof value === "string") {
+          const num = parseFloat(value.replace(/[^0-9.-]+/g, ""))
+          return Number.isFinite(num) ? num : 0
+        }
+        return 0
       }
+
+      const getVal = (obj, key) => safeNumber(obj[key])
+      const aVal = getVal(a, sortBy)
+      const bVal = getVal(b, sortBy)
+      return aVal - bVal
     })
+
+    console.log(sortedProperties)
 
     // Paginate results
     const totalCount = filteredProperties.length
     const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
     const startIndex = (page - 1) * ITEMS_PER_PAGE
     const endIndex = startIndex + ITEMS_PER_PAGE
-    const paginatedProperties = filteredProperties.slice(startIndex, endIndex)
+    //const paginatedProperties = filteredProperties.slice(startIndex, endIndex)
 
     res.json({
-      properties: paginatedProperties,
+      properties: filteredProperties,
       pagination: {
         page,
         totalPages,

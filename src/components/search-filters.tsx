@@ -59,7 +59,7 @@ export function SearchFilters({ filters, onFiltersChange }: SearchFiltersProps) 
               updateFilter("sortBy", sortValue)
             }}
           >
-            <SelectTrigger id="sort-by" className="w-full">
+            <SelectTrigger id="sort-by" className="w-full text-white">
               <SelectValue placeholder="Select an option" />
             </SelectTrigger>
             <SelectContent>

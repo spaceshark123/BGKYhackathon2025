@@ -56,7 +56,7 @@ export function HouseSearch() {
           minSquareFeet: filters.minSquareFeet.toString(),
           maxSquareFeet: filters.maxSquareFeet.toString(),
           formattedAddress: filters.formattedAddress || "",
-          // sortBy: filters.sortBy,
+          sortBy: filters.sortBy,
           page: "1",
         })
 
@@ -92,6 +92,8 @@ export function HouseSearch() {
         maxPrice: filters.maxPrice.toString(),
         minSquareFeet: filters.minSquareFeet.toString(),
         maxSquareFeet: filters.maxSquareFeet.toString(),
+        formattedAddress: filters.formattedAddress || "",
+        sortBy: filters.sortBy,
         page: (pagination.page + 1).toString(),
       })
 
