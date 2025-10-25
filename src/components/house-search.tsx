@@ -24,10 +24,7 @@ export function HouseSearch() {
     minPrice: 0,
     maxPrice: 3000000,
     minSquareFeet: 0,
-    maxSquareFeet: 5000,
-    bedrooms: undefined,
-    bathrooms: undefined,
-    location: "",
+    maxSquareFeet: 5000
   })
 
   const [properties, setProperties] = useState<Property[]>([])
@@ -58,10 +55,6 @@ export function HouseSearch() {
           maxSquareFeet: filters.maxSquareFeet.toString(),
           page: "1",
         })
-
-        if (filters.bedrooms) params.append("bedrooms", filters.bedrooms.toString())
-        if (filters.bathrooms) params.append("bathrooms", filters.bathrooms.toString())
-        if (filters.location) params.append("location", filters.location)
 
         const response = await fetch(`${API_URL}/api/properties?${params}`)
         const data: PropertiesResponse = await response.json()
@@ -97,10 +90,6 @@ export function HouseSearch() {
         maxSquareFeet: filters.maxSquareFeet.toString(),
         page: (pagination.page + 1).toString(),
       })
-
-      if (filters.bedrooms) params.append("bedrooms", filters.bedrooms.toString())
-      if (filters.bathrooms) params.append("bathrooms", filters.bathrooms.toString())
-      if (filters.location) params.append("location", filters.location)
 
       const response = await fetch(`${API_URL}/api/properties?${params}`)
       const data: PropertiesResponse = await response.json()

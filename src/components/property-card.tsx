@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+//import { Badge } from "@/components/ui/badge"
 import type { Property } from "@/types/properties"
-import { Bed, Bath, Maximize2, MapPin } from "lucide-react"
+import { Maximize2, MapPin } from "lucide-react"
 
 interface PropertyCardProps {
   property: Property
@@ -10,9 +10,9 @@ interface PropertyCardProps {
 export function PropertyCard({ property }: PropertyCardProps) {
   return (
     <Card className="overflow-hidden transition-shadow hover:shadow-lg">
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative overflow-hidden" style={{ paddingTop: "-75px" }}>
         <img
-          src={property.imageUrl || "/placeholder.svg"}
+          src={"../../../public/house.jpg"}
           alt={property.title}
           className="object-cover transition-transform hover:scale-105"
         />
@@ -25,30 +25,22 @@ export function PropertyCard({ property }: PropertyCardProps) {
 
         <div className="mb-3 flex items-center gap-1 text-sm text-muted-foreground">
           <MapPin className="h-4 w-4" />
-          <span>{property.location}</span>
+          {/* <span>{property.location}</span> */}
         </div>
 
         <div className="mb-3 flex items-center gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-1">
-            <Bed className="h-4 w-4" />
-            <span>{property.bedrooms} bed</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Bath className="h-4 w-4" />
-            <span>{property.bathrooms} bath</span>
-          </div>
-          <div className="flex items-center gap-1">
             <Maximize2 className="h-4 w-4" />
-            <span>{property.squareFeet.toLocaleString()} sq ft</span>
+            <span>{property.lotSize.toLocaleString()} sq ft</span>
           </div>
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {property.features.slice(0, 3).map((feature, index) => (
+          {/* {property.features.slice(0, 3).map((feature, index) => (
             <Badge key={index} variant="secondary" className="text-xs">
               {feature}
             </Badge>
-          ))}
+          ))} */}
         </div>
       </CardContent>
     </Card>

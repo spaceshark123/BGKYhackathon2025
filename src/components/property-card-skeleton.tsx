@@ -2,9 +2,9 @@ import { Card, CardContent } from "@/components/ui/card"
 
 export function PropertyCardSkeleton() {
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden aspect-4/3">
       {/* Image skeleton */}
-      <div className="aspect-[4/3] w-full animate-pulse bg-muted" />
+      <div className="w-full animate-pulse bg-muted" />
 
       <CardContent className="p-6">
         {/* Price skeleton */}

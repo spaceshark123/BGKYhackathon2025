@@ -25,7 +25,7 @@ app.get("/api/properties", async (req, res) => {
   try {
     // Read JSON file (for large files, consider streaming or database)
     // go 2 directories up and then into listings folder
-    const dataPath = path.join(__dirname, "..", "..", "listings", "test-properties.json")
+    const dataPath = path.join(__dirname, "..", "..", "listings", "listings.json")
     const fileContent = await fs.readFile(dataPath, "utf-8")
     const properties = JSON.parse(fileContent)
 
@@ -34,9 +34,6 @@ app.get("/api/properties", async (req, res) => {
     const maxPrice = Number(req.query.maxPrice) || Number.POSITIVE_INFINITY
     const minSquareFeet = Number(req.query.minSquareFeet) || 0
     const maxSquareFeet = Number(req.query.maxSquareFeet) || Number.POSITIVE_INFINITY
-    const bedrooms = req.query.bedrooms ? Number(req.query.bedrooms) : undefined
-    const bathrooms = req.query.bathrooms ? Number(req.query.bathrooms) : undefined
-    const location = req.query.location || ""
     const page = Number(req.query.page) || 1
 
     // Filter properties
@@ -45,15 +42,6 @@ app.get("/api/properties", async (req, res) => {
         return false
       }
       if (property.squareFeet < minSquareFeet || property.squareFeet > maxSquareFeet) {
-        return false
-      }
-      if (bedrooms && property.bedrooms < bedrooms) {
-        return false
-      }
-      if (bathrooms && property.bathrooms < bathrooms) {
-        return false
-      }
-      if (location && !property.location.toLowerCase().includes(location.toLowerCase())) {
         return false
       }
       return true

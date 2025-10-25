@@ -86,49 +86,6 @@ export function SearchFilters({ filters, onFiltersChange }: SearchFiltersProps) 
             />
           </div>
         </div>
-
-        {/* Bedrooms */}
-        <div className="space-y-2">
-          <Label htmlFor="bedrooms">Minimum Bedrooms</Label>
-          <Select
-            value={filters.bedrooms?.toString() || "any"}
-            onValueChange={(value) => updateFilter("bedrooms", value === "any" ? undefined : Number.parseInt(value))}
-          >
-            <SelectTrigger id="bedrooms">
-              <SelectValue placeholder="Any" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="any">Any</SelectItem>
-              <SelectItem value="1">1+</SelectItem>
-              <SelectItem value="2">2+</SelectItem>
-              <SelectItem value="3">3+</SelectItem>
-              <SelectItem value="4">4+</SelectItem>
-              <SelectItem value="5">5+</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* Bathrooms */}
-        <div className="space-y-2">
-          <Label htmlFor="bathrooms">Minimum Bathrooms</Label>
-          <Select
-            value={filters.bathrooms?.toString() || "any"}
-            onValueChange={(value) => updateFilter("bathrooms", value === "any" ? undefined : Number.parseFloat(value))}
-          >
-            <SelectTrigger id="bathrooms">
-              <SelectValue placeholder="Any" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="any">Any</SelectItem>
-              <SelectItem value="1">1+</SelectItem>
-              <SelectItem value="1.5">1.5+</SelectItem>
-              <SelectItem value="2">2+</SelectItem>
-              <SelectItem value="2.5">2.5+</SelectItem>
-              <SelectItem value="3">3+</SelectItem>
-              <SelectItem value="4">4+</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
       </CardContent>
     </Card>
   )
