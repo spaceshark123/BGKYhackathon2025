@@ -9,11 +9,16 @@ interface PropertyCardProps {
 }
 
 export function PropertyCard({ property }: PropertyCardProps) {
+  const getMapImageUrl = (lat: number, lng: number) => {
+    const apiKey ='AIzaSyD-lwBv3vwO9vlSLeBoAR4TpkOgIMF0qtY'
+    const maptype = 'satellite'
+    return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=16&size=600x400&maptype=${maptype}&markers=color:red%7C${lat},${lng}&key=${apiKey}`
+  }
   return (
     <Card className="overflow-hidden transition-shadow hover:shadow-lg">
       <div className="relative overflow-hidden" style={{ paddingTop: "-75px" }}>
         <img
-          src={"/house.jpg"}
+          src={getMapImageUrl(property.latitude, property.longitude) || "/house.jpg"}
           alt={property.title}
           className="object-cover transition-transform hover:scale-105"
         />
@@ -34,8 +39,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
         <div className="mb-3 flex items-center gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-1">
             <Maximize2 className="h-4 w-4" />
-            
-            <span>{property.lotSize.toLocaleString()} sq ft</span>
+            <span>{property.lotSize ? property.lotSize.toLocaleString() : 'N/A'} sq ft</span>
           </div>
         </div>
 
