@@ -118,7 +118,7 @@ export function HouseSearch() {
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-6">
           <h1 className="text-3xl font-bold text-foreground">Find <span className="text-blue-600">Your</span> Affordable Home</h1>
-          <p className="mt-2 text-muted-foreground">Search through Bowling Green listings</p>
+          <p className="mt-2 text-muted-foreground">Search through Bowling Green listings for the best homes on the market</p>
         </div>
       </header>
 
