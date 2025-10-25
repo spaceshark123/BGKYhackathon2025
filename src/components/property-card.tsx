@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card"
 //import { Badge } from "@/components/ui/badge"
 import type { Property } from "@/types/properties"
 import { Maximize2, MapPin } from "lucide-react"
+import FadeText from "./fadetext"
 
 interface PropertyCardProps {
   property: Property
@@ -12,7 +13,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
     <Card className="overflow-hidden transition-shadow hover:shadow-lg">
       <div className="relative overflow-hidden" style={{ paddingTop: "-75px" }}>
         <img
-          src={"../../../public/house.jpg"}
+          src={"/house.jpg"}
           alt={property.title}
           className="object-cover transition-transform hover:scale-105"
         />
@@ -25,12 +26,13 @@ export function PropertyCard({ property }: PropertyCardProps) {
 
         <div className="mb-3 flex items-center gap-1 text-sm text-muted-foreground">
           <MapPin className="h-4 w-4" />
-          {/* <span>{property.location}</span> */}
+          <FadeText text={property.formattedAddress.toLocaleString()} className="max-w-[80px]" />
         </div>
 
         <div className="mb-3 flex items-center gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-1">
             <Maximize2 className="h-4 w-4" />
+            
             <span>{property.lotSize.toLocaleString()} sq ft</span>
           </div>
         </div>

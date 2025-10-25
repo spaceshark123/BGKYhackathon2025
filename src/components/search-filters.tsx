@@ -16,11 +16,13 @@ interface SearchFiltersProps {
 export function SearchFilters({ filters, onFiltersChange }: SearchFiltersProps) {
   const [localPriceRange, setLocalPriceRange] = useState([filters.minPrice, filters.maxPrice])
   const [localSquareFeet, setLocalSquareFeet] = useState([filters.minSquareFeet, filters.maxSquareFeet])
+  const [localAddress, setLocalAddress] = useState(filters.formattedAddress || "")
 
   useEffect(() => {
     setLocalPriceRange([filters.minPrice, filters.maxPrice])
     setLocalSquareFeet([filters.minSquareFeet, filters.maxSquareFeet])
-  }, [filters.minPrice, filters.maxPrice, filters.minSquareFeet, filters.maxSquareFeet])
+    setLocalAddress(filters.formattedAddress || "")
+  }, [filters.minPrice, filters.maxPrice, filters.minSquareFeet, filters.maxSquareFeet, filters.formattedAddress])
 
   const updateFilter = (key: keyof SearchFiltersType, value: any) => {
     onFiltersChange({ ...filters, [key]: value })
@@ -34,12 +36,12 @@ export function SearchFilters({ filters, onFiltersChange }: SearchFiltersProps) 
       <CardContent className="space-y-6">
         {/* Location */}
         <div className="space-y-2">
-          <Label htmlFor="location">Location</Label>
+          <Label htmlFor="address">Address</Label>
           <Input
-            id="location"
-            placeholder="Enter location..."
-            value={filters.location}
-            onChange={(e) => updateFilter("location", e.target.value)}
+            id="address"
+            placeholder="Enter address..."
+            value={filters.formattedAddress || ""}
+            onChange={(e) => updateFilter("formattedAddress", e.target.value)}
           />
         </div>
 

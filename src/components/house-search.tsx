@@ -24,7 +24,8 @@ export function HouseSearch() {
     minPrice: 0,
     maxPrice: 3000000,
     minSquareFeet: 0,
-    maxSquareFeet: 5000
+    maxSquareFeet: 5000,
+    formattedAddress: "",
   })
 
   const [properties, setProperties] = useState<Property[]>([])
@@ -53,6 +54,7 @@ export function HouseSearch() {
           maxPrice: filters.maxPrice.toString(),
           minSquareFeet: filters.minSquareFeet.toString(),
           maxSquareFeet: filters.maxSquareFeet.toString(),
+          formattedAddress: filters.formattedAddress || "",
           page: "1",
         })
 
@@ -108,8 +110,8 @@ export function HouseSearch() {
       {/* Header */}
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-6">
-          <h1 className="text-3xl font-bold text-foreground">Find Your Dream Home</h1>
-          <p className="mt-2 text-muted-foreground">Search through our curated collection of properties</p>
+          <h1 className="text-3xl font-bold text-foreground">Find Your Affordable Home</h1>
+          <p className="mt-2 text-muted-foreground">Search through Bowling Green listings</p>
         </div>
       </header>
 

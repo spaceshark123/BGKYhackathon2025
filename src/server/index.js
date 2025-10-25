@@ -34,6 +34,7 @@ app.get("/api/properties", async (req, res) => {
     const maxPrice = Number(req.query.maxPrice) || Number.POSITIVE_INFINITY
     const minSquareFeet = Number(req.query.minSquareFeet) || 0
     const maxSquareFeet = Number(req.query.maxSquareFeet) || Number.POSITIVE_INFINITY
+    const address = req.query.formattedAddress ? String(req.query.formattedAddress).toLowerCase() : null
     const page = Number(req.query.page) || 1
 
     // Filter properties
@@ -42,6 +43,9 @@ app.get("/api/properties", async (req, res) => {
         return false
       }
       if (property.squareFeet < minSquareFeet || property.squareFeet > maxSquareFeet) {
+        return false
+      }
+      if (address && property.formattedAddress.toLowerCase().indexOf(address) === -1) {
         return false
       }
       return true

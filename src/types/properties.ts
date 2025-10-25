@@ -3,6 +3,9 @@ export interface Property {
   title: string
   price: number
   lotSize: number
+  formattedAddress: string
+  latitude: number
+  longitude: number
 }
 
 export interface SearchFilters {
@@ -10,4 +13,5 @@ export interface SearchFilters {
   maxPrice: number
   minSquareFeet: number
   maxSquareFeet: number
+  formattedAddress?: string
 }
