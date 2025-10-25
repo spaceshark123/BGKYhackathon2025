@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import type { Property } from "@/types/properties"
-import { Maximize2, MapPin , Plus, Minus} from "lucide-react"
+import { Bed, Bath, Maximize2, MapPin , Plus, Minus} from "lucide-react"
 import FadeText from "./fadetext"
 import { useState } from "react"
 
@@ -36,7 +36,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
         <div className="absolute top-2 right-2 flex flex-col gap-1">
           <Button
             size="icon"
-            variant="secondary"
+            variant="default"
             className="h-8 w-8 shadow-md"
             onClick={handleZoomIn}
             disabled={zoom >= 21}
@@ -45,7 +45,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
           </Button>
           <Button
             size="icon"
-            variant="secondary"
+            variant="default"
             className="h-8 w-8 shadow-md"
             onClick={handleZoomOut}
             disabled={zoom <= 10}
@@ -72,6 +72,18 @@ export function PropertyCard({ property }: PropertyCardProps) {
             <Maximize2 className="h-4 w-4" />
             <span>{property.lotSize ? property.lotSize.toLocaleString() : 'N/A'} sq ft</span>
           </div>
+          {property.bedrooms !== undefined && property.bedrooms > 0 && (
+            <div className="flex items-center gap-1">
+              <Bed className="h-4 w-4" />
+              <span>{property.bedrooms} bed</span>
+            </div>
+          )}
+          {property.bathrooms !== undefined && property.bathrooms > 0 && (
+            <div className="flex items-center gap-1">
+              <Bath className="h-4 w-4" />
+              <span>{property.bathrooms} bath</span>
+            </div>
+          )}
         </div>
 
         <div className="flex flex-wrap gap-2">

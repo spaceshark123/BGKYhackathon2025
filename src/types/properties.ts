@@ -6,6 +6,9 @@ export interface Property {
   formattedAddress: string
   latitude: number
   longitude: number
+  bedrooms?: number
+  bathrooms?: number
+
 }
 
 export interface SearchFilters {
@@ -13,7 +16,8 @@ export interface SearchFilters {
   maxPrice: number
   minSquareFeet: number
   maxSquareFeet: number
-  formattedAddress?: string
-  sortBy: "price" | "squareFeet"
-  sortOrder: "asc" | "desc"
+  bedrooms?: number
+  bathrooms?: number
+  location?: string
+  propertyType?: string
 }
