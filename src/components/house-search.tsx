@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { SearchFilters } from "@/components/search-filters"
-import { PropertyCard } from "@/components/property-card"
-import type { Property, SearchFilters as SearchFiltersType } from "@/types/property"
+import { SearchFilters } from "./search-filters"
+import { PropertyCard } from "./property-card"
+import type { Property, SearchFilters as SearchFiltersType } from "../types/properties"
 
 // Sample data - in a real app, this would come from an API
 const sampleProperties: Property[] = [

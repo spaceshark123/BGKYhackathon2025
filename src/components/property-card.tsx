@@ -1,8 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import type { Property } from "@/types/property"
+import type { Property } from "@/types/properties"
 import { Bed, Bath, Maximize2, MapPin } from "lucide-react"
-import Image from "next/image"
 
 interface PropertyCardProps {
   property: Property
@@ -12,10 +11,9 @@ export function PropertyCard({ property }: PropertyCardProps) {
   return (
     <Card className="overflow-hidden transition-shadow hover:shadow-lg">
       <div className="relative aspect-[4/3] overflow-hidden">
-        <Image
+        <img
           src={property.imageUrl || "/placeholder.svg"}
           alt={property.title}
-          fill
           className="object-cover transition-transform hover:scale-105"
         />
       </div>
