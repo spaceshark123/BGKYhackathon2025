@@ -130,6 +130,7 @@ export function HouseSearch() {
               </p>
             </div>
 
+            <div className="w-200">
             {loading ? (
               <div className="grid gap-6 sm:grid-cols-2">
                 {Array.from({ length: 6 }).map((_, i) => (
@@ -158,7 +159,8 @@ export function HouseSearch() {
                   </div>
                 )}
               </>
-            )}
+              )}
+            </div>
           </main>
         </div>
       </div>
