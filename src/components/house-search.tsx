@@ -1,8 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef} from "react"
 import { SearchFilters } from "./search-filters"
 import { PropertyCard } from "./property-card"
+import { PropertyCardSkeleton } from "@/components/property-card-skeleton"
 import type { Property, SearchFilters as SearchFiltersType } from "../types/properties"
 import { Button } from "@/components/ui/button"
 
@@ -39,7 +40,14 @@ export function HouseSearch() {
   const [loading, setLoading] = useState(false)
   const [loadingMore, setLoadingMore] = useState(false)
 
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
   useEffect(() => {
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current)
+    }
+
+    debounceTimerRef.current = setTimeout(() => {
     const fetchProperties = async () => {
       setLoading(true)
       try {
@@ -68,6 +76,13 @@ export function HouseSearch() {
     }
 
     fetchProperties()
+    }, 500)
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current)
+      }
+    }
   }, [filters])
 
   const loadMore = async () => {
@@ -127,8 +142,10 @@ export function HouseSearch() {
             </div>
 
             {loading ? (
-              <div className="rounded-lg border border-border bg-card p-12 text-center">
-                <p className="text-lg text-muted-foreground">Loading properties...</p>
+              <div className="grid gap-6 sm:grid-cols-2">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <PropertyCardSkeleton key={i} />
+                ))}
               </div>
             ) : properties.length === 0 ? (
               <div className="rounded-lg border border-border bg-card p-12 text-center">
