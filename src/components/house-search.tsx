@@ -27,6 +27,7 @@ export function HouseSearch() {
     maxSquareFeet: 5000,
     formattedAddress: "",
     sortBy: "price",
+    sortOrder: "asc",
   })
 
   const [properties, setProperties] = useState<Property[]>([])
@@ -57,6 +58,7 @@ export function HouseSearch() {
           maxSquareFeet: filters.maxSquareFeet.toString(),
           formattedAddress: filters.formattedAddress || "",
           sortBy: filters.sortBy,
+          sortOrder: filters.sortOrder,
           page: "1",
         })
 
@@ -94,6 +96,7 @@ export function HouseSearch() {
         maxSquareFeet: filters.maxSquareFeet.toString(),
         formattedAddress: filters.formattedAddress || "",
         sortBy: filters.sortBy,
+        sortOrder: filters.sortOrder,
         page: (pagination.page + 1).toString(),
       })
 

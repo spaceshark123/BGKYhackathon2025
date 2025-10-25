@@ -19,13 +19,15 @@ export function SearchFilters({ filters, onFiltersChange }: SearchFiltersProps) 
   const [localAddress, setLocalAddress] = useState(filters.formattedAddress || "")
   // sort by
   const [sortBy, setSortBy] = useState<"price" | "squareFeet">("price")
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc")
 
   useEffect(() => {
     setLocalPriceRange([filters.minPrice, filters.maxPrice])
     setLocalSquareFeet([filters.minSquareFeet, filters.maxSquareFeet])
     setLocalAddress(filters.formattedAddress || "")
     setSortBy(filters.sortBy)
-  }, [filters.minPrice, filters.maxPrice, filters.minSquareFeet, filters.maxSquareFeet, filters.formattedAddress, filters.sortBy])
+    setSortOrder(filters.sortOrder || "asc")
+  }, [filters.minPrice, filters.maxPrice, filters.minSquareFeet, filters.maxSquareFeet, filters.formattedAddress, filters.sortBy, filters.sortOrder])
 
   const updateFilter = (key: keyof SearchFiltersType, value: any) => {
     onFiltersChange({ ...filters, [key]: value })
@@ -67,6 +69,22 @@ export function SearchFilters({ filters, onFiltersChange }: SearchFiltersProps) 
               <SelectItem value="squareFeet">Square Feet</SelectItem>
             </SelectContent>
           </Select>
+          { /* ascending/descending select */}
+          <div className="space-y-2">
+            <Label htmlFor="sort-order">Sort Order</Label>
+            <Select
+              value={filters.sortOrder}
+              onValueChange={(value) => updateFilter("sortOrder", value)}
+            >
+              <SelectTrigger id="sort-order" className="w-full text-white">
+                <SelectValue placeholder="Select an option" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="asc">Ascending</SelectItem>
+                <SelectItem value="desc">Descending</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         {/* Price Range */}

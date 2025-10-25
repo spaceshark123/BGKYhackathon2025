@@ -36,6 +36,7 @@ app.get("/api/properties", async (req, res) => {
     const maxSquareFeet = Number(req.query.maxSquareFeet) || Number.POSITIVE_INFINITY
     const address = req.query.formattedAddress ? String(req.query.formattedAddress).toLowerCase() : null
     const sortBy = req.query.sortBy || "price"
+    const sortOrder = req.query.sortOrder || "asc"
     const page = Number(req.query.page) || 1
 
     // Filter properties
@@ -69,13 +70,14 @@ app.get("/api/properties", async (req, res) => {
 
     // Sort properties (if sortBy is "squareFeet", the field might be named squareFeet, squareFootage, or lotSize)
     const sortedProperties = filteredProperties.sort((a, b) => {
+      const out = sortOrder === "asc" ? 1 : -1
       if (sortBy === "price") {
-        return a.price - b.price
+        return (a.price - b.price) * out
       }
       else if (sortBy === "squareFeet") {
         const aSquareFeet = a.squareFeet !== undefined ? a.squareFeet : (a.squareFootage !== undefined ? a.squareFootage : a.lotSize)
         const bSquareFeet = b.squareFeet !== undefined ? b.squareFeet : (b.squareFootage !== undefined ? b.squareFootage : b.lotSize)
-        return aSquareFeet - bSquareFeet
+        return (aSquareFeet - bSquareFeet) * out
       }
       return 0
     })
