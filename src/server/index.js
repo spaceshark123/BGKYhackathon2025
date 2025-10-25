@@ -53,21 +53,6 @@ app.get("/api/properties", async (req, res) => {
       return true
     })
 
-    // check if all properties have the price field as number
-    const allPricesAreNumbers = filteredProperties.every((property) => typeof property.price === "number")
-    console.log("All prices are numbers:", allPricesAreNumbers)
-
-    // check if all properties have the squareFeet or squareFootage field
-    const allSquareFeetAreNumbers = filteredProperties.every((property) => (property.squareFeet !== undefined && typeof property.squareFeet === "number") || (property.squareFootage !== undefined && typeof property.squareFootage === "number") || (property.lotSize !== undefined && typeof property.lotSize === "number"))
-    console.log("All square feet are numbers:", allSquareFeetAreNumbers)
-
-    // for each squareFootage that is not a number, log the property
-    filteredProperties.forEach((property) => {
-      if (property.squareFeet === undefined && property.squareFootage === undefined && property.lotSize === undefined) {
-        console.log("Property without squareFootage field:", property)
-      }
-    })
-
     // Sort properties (if sortBy is "squareFeet", the field might be named squareFeet, squareFootage, or lotSize)
     const sortedProperties = filteredProperties.sort((a, b) => {
       const out = sortOrder === "asc" ? 1 : -1
@@ -91,8 +76,6 @@ app.get("/api/properties", async (req, res) => {
         property.lotSize = property.squareFootage
       }
     })
-
-    // console.log(sortedProperties)
 
     // Paginate results
     const totalCount = filteredProperties.length
