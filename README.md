@@ -1,11 +1,8 @@
-# House Search App
+# Open Home
 
-A modern house search application with React, TypeScript, Next.js frontend and Express.js backend.
+A simplified house search application for Bowling Green, using React, TypeScript, and Express.js
 
 ## Getting Started
-
-### Prerequisites
-- Node.js 18+ installed
 
 ### Installation
 
@@ -25,26 +22,21 @@ npm run dev:all
 
 **Option 2: Run servers separately**
 
-Terminal 1 - Express Backend:
+Terminal 1 - Backend:
 \`\`\`bash
 npm run dev:server
 \`\`\`
 
-Terminal 2 - Next.js Frontend:
+Terminal 2 - Frontend:
 \`\`\`bash
 npm run dev
 \`\`\`
 
-The Express server will run on `http://localhost:3001` and the Next.js app on `http://localhost:3000`.
+The Express server will run on `http://localhost:3001` and the actual web app on `http://localhost:5173`.
 
 ## Architecture
 
-- **Frontend**: Next.js 16 with React 19 and TypeScript
-- **Backend**: Express.js REST API
-- **Data**: JSON file-based storage with server-side filtering and pagination
+- **Frontend**: React + Typescript
+- **Backend**: Node JS + Express.js
+- **Data**: JSON file-based storage with server-side querying, filtering and pagination. Data sourced from RentCast API
 - **Styling**: Tailwind CSS with shadcn/ui components
-
-## API Endpoints
-
-- `GET /api/properties` - Fetch filtered and paginated properties
-  - Query params: `minPrice`, `maxPrice`, `minSquareFeet`, `maxSquareFeet`, `bedrooms`, `bathrooms`, `location`, `page`
