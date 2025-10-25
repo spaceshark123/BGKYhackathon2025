@@ -1,27 +1,58 @@
 import { Card, CardContent } from "@/components/ui/card"
-//import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import type { Property } from "@/types/properties"
-import { Maximize2, MapPin } from "lucide-react"
+import { Maximize2, MapPin , Plus, Minus} from "lucide-react"
 import FadeText from "./fadetext"
+import { useState } from "react"
+
 
 interface PropertyCardProps {
   property: Property
 }
 
 export function PropertyCard({ property }: PropertyCardProps) {
-  const getMapImageUrl = (lat: number, lng: number) => {
+  const [zoom, setZoom] = useState(20)
+  const getMapImageUrl = (lat: number, lng: number, zoomLevel: number) => {
     const apiKey ='AIzaSyD-lwBv3vwO9vlSLeBoAR4TpkOgIMF0qtY'
     const maptype = 'satellite'
-    return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=20&size=600x400&maptype=${maptype}&markers=color:red%7C${lat},${lng}&key=${apiKey}`
+    return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoomLevel}&size=600x400&maptype=${maptype}&markers=color:red%7C${lat},${lng}&key=${apiKey}`
   }
+
+  const handleZoomIn = () => {
+    setZoom((prev) => Math.min(prev + 1, 21)) // Max zoom is 21
+  }
+  const handleZoomOut = () => {
+    setZoom((prev) => Math.max(prev - 1, 10)) // Min zoom is 10
+  }
+
   return (
     <Card className="overflow-hidden transition-shadow hover:shadow-lg">
       <div className="relative overflow-hidden" style={{ marginTop: "-25px" }}>
         <img
-          src={getMapImageUrl(property.latitude, property.longitude) || "/house.jpg"}
+          src={getMapImageUrl(property.latitude, property.longitude, zoom) || "/house.jpg"}
           alt={property.title}
           className="object-cover transition-transform hover:scale-105"
         />
+        <div className="absolute top-2 right-2 flex flex-col gap-1">
+          <Button
+            size="icon"
+            variant="secondary"
+            className="h-8 w-8 shadow-md"
+            onClick={handleZoomIn}
+            disabled={zoom >= 21}
+          >
+            <Plus className="h-4 w-4" />
+          </Button>
+          <Button
+            size="icon"
+            variant="secondary"
+            className="h-8 w-8 shadow-md"
+            onClick={handleZoomOut}
+            disabled={zoom <= 10}
+          >
+            <Minus className="h-4 w-4" />
+          </Button>
+        </div>
       </div>
       <CardContent className="p-4">
         <div className="mb-2 flex items-start justify-between">
