@@ -24,7 +24,7 @@ app.get("/health", (req, res) => {
 app.get("/api/properties", async (req, res) => {
   try {
     // Read JSON file (for large files, consider streaming or database)
-    const dataPath = path.join(__dirname, "../data/properties.json")
+    const dataPath = path.join(__dirname, "./listings/test-properties.json")
     const fileContent = await fs.readFile(dataPath, "utf-8")
     const properties = JSON.parse(fileContent)
 

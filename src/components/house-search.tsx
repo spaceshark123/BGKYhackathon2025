@@ -1,13 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { SearchFilters } from "./search-filters"
 import { PropertyCard } from "./property-card"
 import type { Property, SearchFilters as SearchFiltersType } from "../types/properties"
+import { Button } from "@/components/ui/button"
 
 
-const API_URL = process.env.PUBLIC_API_URL || "http://localhost:3001"
-
+const API_URL = "http://localhost:3001"
 interface PropertiesResponse {
   properties: Property[]
   pagination: {
